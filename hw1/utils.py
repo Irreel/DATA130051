@@ -1,7 +1,9 @@
 import time
 import json
 import pickle
+from train import EPOCH
 import numpy as np
+from modules import NNClassifier
 import matplotlib.pyplot as plt
 
 """
@@ -28,34 +30,45 @@ def save_checkpoint(model, params = None, suffix = None, path="./saved"):
 """
 Visualization Utils
 """
+def vis_model(model: NNClassifier, path="./"):
+    i = 1
+    for layer in [model.FC1, model,FC2]:
+        plt.imshow(layer.w, cmap='viridis')
+        plt.title(f'Layer{i}')
+        plt.colorbar()
+        plt.savefig(path+f'FC{i}.png')
+        i += 1
+    pass
+
+
 def vis_image(data, batch_first=False, save_flg=False):
     if batch_first:
         # sample the first one
         data = data[0]
     plt.imshow(data, cmap=plt.get_cmap('gray'))
     plt.show()
+   
     
-def vis_loss(train_loss, valid_loss, epoch: int, save_flg=False):
+def vis_loss(train_loss, valid_loss, epoch=EPOCH, save_flg=False):
+    if train_loss: plt.plot(train_loss, range(epoch), label='Training')
+    if valid_loss: plt.plot(valid_loss, range(epoch), label='Valid')   
+    plt.xlabel('Epoch') 
+    plt.legend()
+    if save_flg: plt.savefig('./loss.png')
+    else: plt.show()
     # # Create a figure and axis object
     # fig, ax = plt.subplots()
 
     # # Plot the curves
     # ax.plot(x, y1, label='')
     # ax.plot(x, y2, label='')
-
-    plt.plot(train_loss, range(epoch), label='Training')
-    plt.plot(valid_loss, range(epoch), label='Valid')   
-    plt.xlabel('Epoch') 
-    if save_flg: plt.savefig('loss.png')
-    else: plt.show()
     
-    
-def vis_acc(acc_list, epoch: int, save_flg=False):
+def vis_acc(acc_list, epoch=EPOCH, save_flg=False):
     plt.figure()
     plt.plot(range(epoch), acc_list)  
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy')
-    if save_flg: plt.savefig('acc.png')
+    if save_flg: plt.savefig('./acc.png')
     else: plt.show()
 
 """

@@ -4,7 +4,7 @@ import pathlib
 import random
 import numpy as np
 from modules import *
-from utils import MNISTDataLoader, save_checkpoint
+from utils import MNISTDataLoader, save_checkpoint, vis_acc, vis_loss
 
 # Hyperparameters
 EPOCH = 500
@@ -66,6 +66,7 @@ def main(model, epoch=EPOCH, lr_start=L_RATE, reg_term=LAMBDA):
     acc_best = 0
     acc_ls = []
     val_loss_ls = []
+    train_loss_ls = []
     
     for i in range(epoch):
         # Decay strategy
@@ -74,6 +75,7 @@ def main(model, epoch=EPOCH, lr_start=L_RATE, reg_term=LAMBDA):
         train_loss, valid_loss, valid_acc = training(i, lr, reg_term, model)
         acc_ls.append(valid_acc)
         val_loss_ls.append(valid_loss)
+        train_loss_ls.append(train_loss)
         if valid_loss <= val_loss_best and valid_acc >= acc_best:
             epoch_best = i
             acc_best = valid_acc
@@ -87,9 +89,11 @@ def main(model, epoch=EPOCH, lr_start=L_RATE, reg_term=LAMBDA):
     
     print(f"Best epoch is {epoch_best} with valid loss {val_loss_best} and acc {acc_best}")
     
-    return epoch_best, acc_best, acc_ls, val_loss_ls
+    return epoch_best, acc_best, acc_ls, train_loss_ls, val_loss_ls
 
 
 if __name__ == "__main__":
-    _, acc, acc_ls, val_loss_ls = main(class_model)
+    _, acc, acc_ls, train_loss_ls, val_loss_ls = main(class_model)
+    vis_loss(train_loss_ls, val_loss_ls, EPOCH, save_flg=True)
+    vis_acc(acc_ls, save_flg=True)
     
