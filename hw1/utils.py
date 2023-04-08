@@ -15,7 +15,7 @@ def save_checkpoint(model, params = None, suffix = None, path="./saved"):
         with open(path+f"/model_{suffix}.pkl", "wb") as f:
             pickle.dump(model, f)
         if params:
-            with open(path+f"hparams_{suffix}.json", 'w') as f:
+            with open(path+f"/hparams_{suffix}.json", 'w') as f:
                 json.dump(params, f)
     else:
         with open(path+f"/{curr_time}/model.pkl", "wb") as f:
