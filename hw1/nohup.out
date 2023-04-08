@@ -1,4 +1,0 @@
-Loaded training images (50000, 28, 28) and labels (50000, 10)
-Loaded valid images (10000, 28, 28) and labels (10000, 10)
-Loaded testing images (10000, 28, 28) and labels (10000, 10)
-Best epoch is 299 with valid loss 53.48566872289329 and acc 0.16344812120003985
