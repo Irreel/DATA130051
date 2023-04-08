@@ -58,8 +58,9 @@ def training(epoch, learning_rate, reg_term, model):
     return np.mean(train_loss_ls), np.mean(valid_loss_ls), np.mean(valid_acc_ls)
 
 
-def main(model, epoch=EPOCH, lr=L_RATE, reg_term=LAMBDA):
+def main(model, epoch=EPOCH, lr_start=L_RATE, reg_term=LAMBDA):
     # initialize
+    lr = lr_start
     val_loss_best = np.inf
     epoch_best = 0
     acc_best = 0
