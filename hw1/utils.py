@@ -1,7 +1,7 @@
+import os
 import time
 import json
 import pickle
-from train import EPOCH
 import numpy as np
 from modules import NNClassifier
 import matplotlib.pyplot as plt
@@ -20,6 +20,7 @@ def save_checkpoint(model, params = None, suffix = None, path="./saved"):
             with open(path+f"/hparams_{suffix}.json", 'w') as f:
                 json.dump(params, f)
     else:
+        os.mkdir(path+f"/{curr_time}/")
         with open(path+f"/{curr_time}/model.pkl", "wb") as f:
             pickle.dump(model, f)
         if params:
@@ -49,7 +50,7 @@ def vis_image(data, batch_first=False, save_flg=False):
     plt.show()
    
     
-def vis_loss(train_loss, valid_loss, epoch=EPOCH, save_flg=False):
+def vis_loss(train_loss, valid_loss, epoch, save_flg=False):
     if train_loss: plt.plot(train_loss, range(epoch), label='Training')
     if valid_loss: plt.plot(valid_loss, range(epoch), label='Valid')   
     plt.xlabel('Epoch') 
@@ -63,7 +64,7 @@ def vis_loss(train_loss, valid_loss, epoch=EPOCH, save_flg=False):
     # ax.plot(x, y1, label='')
     # ax.plot(x, y2, label='')
     
-def vis_acc(acc_list, epoch=EPOCH, save_flg=False):
+def vis_acc(acc_list, epoch, save_flg=False):
     plt.figure()
     plt.plot(range(epoch), acc_list)  
     plt.xlabel('Epoch')

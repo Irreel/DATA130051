@@ -3,7 +3,7 @@ import time
 import pathlib
 import random
 import numpy as np
-from modules import *
+from modules import NNClassifier, NNClassifierLoss
 from utils import MNISTDataLoader, save_checkpoint, vis_acc, vis_loss
 
 # Hyperparameters
@@ -95,5 +95,5 @@ def main(model, epoch=EPOCH, lr_start=L_RATE, reg_term=LAMBDA):
 if __name__ == "__main__":
     _, acc, acc_ls, train_loss_ls, val_loss_ls = main(class_model)
     vis_loss(train_loss_ls, val_loss_ls, EPOCH, save_flg=True)
-    vis_acc(acc_ls, save_flg=True)
+    vis_acc(acc_ls, EPOCH, save_flg=True)
     
