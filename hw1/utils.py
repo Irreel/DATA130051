@@ -33,7 +33,7 @@ Visualization Utils
 """
 def vis_model(model: NNClassifier, path="./", save_fig=False):
     i = 1
-    for layer in [model.FC1, model,FC2]:
+    for layer in [model.FC1, model.FC2]:
         plt.imshow(layer.w, cmap='viridis')
         plt.title(f'Layer{i}')
         plt.colorbar()
