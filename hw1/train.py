@@ -83,7 +83,7 @@ def main(model, epoch=EPOCH, lr_start=L_RATE, reg_term=LAMBDA):
             model_best = model
     
     # Save model and parameters
-    save_checkpoint(model_best, params={"learning_rate": lr, "hidden_dim": model.n_hid, 
+    save_checkpoint(model_best, params={"learning_rate": lr_start, "hidden_dim": model.n_hid, 
                                         "reg_strength": reg_term, "best_epoch": epoch_best, 
                                         "best_acc": acc_best})
     
