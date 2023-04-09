@@ -13,8 +13,8 @@ BATCH_SIZE = 128
 DECAY_FACTOR = 0.25
 DECAY_PER_EPOCH = 150
 # Grid Search
-L_RATE = 1e-4
-DIM_HID = 98 
+L_RATE = 1e-3
+DIM_HID = 196
 LAMBDA = 0.5 # regularization term
 
 random.seed(52)
@@ -70,7 +70,7 @@ def main(model, epoch=EPOCH, lr_start=L_RATE, reg_term=LAMBDA):
     
     for i in range(epoch):
         # Decay strategy
-        if i // DECAY_PER_EPOCH == 0: 
+        if i % DECAY_PER_EPOCH == 0: 
             lr *= DECAY_FACTOR
         train_loss, valid_loss, valid_acc = training(i, lr, reg_term, model)
         acc_ls.append(valid_acc)
