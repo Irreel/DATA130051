@@ -20,7 +20,7 @@ for lr in LR_GRID:
     for dim_hid in HID_GRID:
         for lamda in LAMBDA_GRID:
             model = NNClassifier(n_in=28*28, n_hid=dim_hid)
-            _, acc_avg, acc_ls, valid_loss_ls = main(model, lr=lr, reg_term=lamda)
+            _, acc_avg, acc_ls, valid_loss_ls = main(model, lr_start=lr, reg_term=lamda)
             if acc_avg > best_acc:
                 best_acc = acc_avg
                 best_lr = lr
