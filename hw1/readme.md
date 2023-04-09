@@ -1,4 +1,5 @@
 ## Two-layer neural network
+The model is saved at https://drive.google.com/drive/folders/1T_Z8p3V_rMCgwRSWEI3P5c4owC_wZGYh?usp=sharing
 
 ### Training
 `python train.py`
