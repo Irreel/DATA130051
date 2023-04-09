@@ -31,13 +31,16 @@ def save_checkpoint(model, params = None, suffix = None, path="./saved"):
 """
 Visualization Utils
 """
-def vis_model(model: NNClassifier, path="./"):
+def vis_model(model: NNClassifier, path="./", save_fig=False):
     i = 1
     for layer in [model.FC1, model,FC2]:
         plt.imshow(layer.w, cmap='viridis')
         plt.title(f'Layer{i}')
         plt.colorbar()
-        plt.savefig(path+f'FC{i}.png')
+        if save_fig: 
+            plt.savefig(path+f'FC{i}.png')
+        else: 
+            plt.show()
         i += 1
     pass
 

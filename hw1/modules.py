@@ -5,6 +5,7 @@ def Sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 class NNFC():
+    # Full Connection Layer for Neural Network
     def __init__(self, n_in, n_out, bias=True):
         self.n_in = n_in
         self.n_out = n_out
