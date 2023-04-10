@@ -31,13 +31,13 @@ def save_checkpoint(model, params = None, suffix = None, path="./saved"):
 """
 Visualization Utils
 """
-def vis_model(model: NNClassifier, path="./", save_fig=False):
+def vis_model(model: NNClassifier, path="./", save_flg=False):
     i = 1
     for layer in [model.FC1, model.FC2]:
         plt.imshow(layer.w, cmap='viridis')
         plt.title(f'Layer{i}')
-        plt.colorbar()
-        if save_fig: 
+        # plt.colorbar()
+        if save_flg: 
             plt.savefig(path+f'FC{i}.png')
         else: 
             plt.show()
@@ -53,10 +53,10 @@ def vis_image(data, batch_first=False, save_flg=False):
     plt.show()
    
     
-def vis_loss(train_loss, valid_loss, epoch, save_flg=False):
-    if train_loss: plt.plot(train_loss, range(epoch), label='Training')
-    if valid_loss: plt.plot(valid_loss, range(epoch), label='Valid')   
-    plt.xlabel('Epoch') 
+def vis_loss(train_loss, valid_loss, save_flg=False):
+    if train_loss is not None: plt.plot(train_loss, len(train_loss), label='Training')
+    if valid_loss is not None: plt.plot(valid_loss, len(valid_loss), label='Valid')   
+    # plt.xlabel('Epoch') 
     plt.legend()
     if save_flg: plt.savefig('./loss.png')
     else: plt.show()

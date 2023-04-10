@@ -20,7 +20,7 @@ dataloader = MNISTDataLoader()
 best_model = NNClassifier(n_in=28*28, n_hid=dim_hid)
 
 # Load the model after grid search
-with open(f"./saved/model_gridsearch.pkl", "wb") as f:
+with open(f"./saved/model_gridsearch.pkl", "rb") as f:
     best_model = pickle.load(f)
 
 # testing
@@ -40,7 +40,7 @@ for x, y_label in dataloader.load(BATCH_SIZE, "test"):
     # return np.mean(train_loss_ls), np.mean(valid_loss_ls), np.mean(valid_acc_ls)
     
 # Visualize the model params
-vis_model(best_model)
+vis_model(best_model, save_flg=True)
 print(f"Loss is {np.mean(test_loss_ls)}")
 print(f"Accuracy is {np.mean(test_acc_ls)}")
 
