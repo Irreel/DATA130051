@@ -54,8 +54,8 @@ def vis_image(data, batch_first=False, save_flg=False):
    
     
 def vis_loss(train_loss, valid_loss, save_flg=False):
-    if train_loss is not None: plt.plot(train_loss, len(train_loss), label='Training')
-    if valid_loss is not None: plt.plot(valid_loss, len(valid_loss), label='Valid')   
+    if train_loss is not None: plt.plot(train_loss, range(len(train_loss)), label='Training')
+    if valid_loss is not None: plt.plot(valid_loss, range(len(valid_loss)), label='Valid')   
     # plt.xlabel('Epoch') 
     plt.legend()
     if save_flg: plt.savefig('./loss.png')
