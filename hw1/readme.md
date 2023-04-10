@@ -6,6 +6,7 @@ The model is saved at https://drive.google.com/drive/folders/1T_Z8p3V_rMCgwRSWEI
 Train the model with default hyperparameter setting. Please refer to `Parameter tunning` to search the best hyperparameters.
 The accuracy of valid dataset is as follow.
 ![acc.png](https://github.com/Irreel/DATA130051/blob/main/hw1/img/acc.png?raw=true)
+
 Visualization of training loss and valid loss is as follow.
 ![loss.png](https://github.com/Irreel/DATA130051/blob/main/hw1/img/loss.png?raw=true)
 
