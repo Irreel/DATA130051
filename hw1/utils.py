@@ -52,20 +52,25 @@ def vis_image(data, batch_first=False, save_flg=False):
     plt.imshow(data, cmap=plt.get_cmap('gray'))
     plt.show()
    
-    
-def vis_loss(train_loss, valid_loss, save_flg=False):
-    if train_loss is not None: plt.plot(train_loss, range(len(train_loss)), label='Training')
-    if valid_loss is not None: plt.plot(valid_loss, range(len(valid_loss)), label='Valid')   
-    # plt.xlabel('Epoch') 
-    plt.legend()
+
+def vis_loss(train_loss, valid_loss, epoch, save_flg=False):
+    # Create a new figure with a given DPI
+    plt.figure(dpi=100)
+
+    # Plot the two curves with different colors and labels
+    plt.plot(np.log(train_loss), range(len(train_loss)), color='blue', label='Training')
+    plt.plot(np.log(valid_loss), range(len(valid_loss)), label='Valid', color='red')
+
+    # Hide the x-tick
+    plt.tick_params(axis='x', which='both', bottom=False)
+
+    # Set the title and legend of the figure
+    plt.title('Loss')
+    plt.legend(loc='upper right')
+
+    # Show the figure
     if save_flg: plt.savefig('./loss.png')
     else: plt.show()
-    # # Create a figure and axis object
-    # fig, ax = plt.subplots()
-
-    # # Plot the curves
-    # ax.plot(x, y1, label='')
-    # ax.plot(x, y2, label='')
     
 def vis_acc(acc_list, epoch, save_flg=False):
     plt.figure()

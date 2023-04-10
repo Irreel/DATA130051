@@ -94,6 +94,6 @@ def main(model, epoch=EPOCH, lr_start=L_RATE, reg_term=LAMBDA):
 
 if __name__ == "__main__":
     _, acc, acc_ls, train_loss_ls, val_loss_ls = main(class_model)
-    vis_loss(np.array(train_loss_ls).ravel(), val_loss_ls, save_flg=True)
+    vis_loss(np.array(train_loss_ls).ravel(), np.array(val_loss_ls).ravel(), EPOCH, save_flg=True)
     vis_acc(acc_ls, EPOCH, save_flg=True)
     
